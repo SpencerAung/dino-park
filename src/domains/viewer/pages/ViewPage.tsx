@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getScene } from '@/entities/scenes/getScene'
+import { findParentEdge } from '@/entities/scenes/findParentEdge'
 import { ViewClient } from '../components/ViewClient'
 
 type Target = { imageUrl: string; videoUrl?: string }
@@ -25,5 +26,22 @@ export async function ViewPage({
     })
     .filter((x): x is Target => x !== null)
 
-  return <ViewClient view={view} sceneId={sceneId} oneHopTargets={oneHopTargets} />
+  const parentEdge = findParentEdge(scene, viewId)
+  let parentTarget: Target | null = null
+  if (parentEdge) {
+    const parentView = scene.views[parentEdge.parentViewId]
+    if (parentView?.mediaType === 'image') {
+      parentTarget = { imageUrl: parentView.imageUrl, videoUrl: parentEdge.returnVideoUrl }
+    }
+  }
+  const allTargets: Target[] = parentTarget ? [...oneHopTargets, parentTarget] : oneHopTargets
+
+  return (
+    <ViewClient
+      view={view}
+      sceneId={sceneId}
+      oneHopTargets={allTargets}
+      parentEdge={parentEdge}
+    />
+  )
 }

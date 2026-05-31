@@ -18,6 +18,12 @@ export type Hotspot = {
   targetViewId: string
   geometry: Rect2D
   transitionVideoUrl?: string
+  returnVideoUrl?: string
+}
+
+export type ParentEdge = {
+  parentViewId: string
+  returnVideoUrl: string
 }
 
 export type Rect2D = {
