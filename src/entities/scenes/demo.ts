@@ -14,6 +14,7 @@ export const demoScene: Scene = {
           targetViewId: 'view-b',
           geometry: { shape: 'rect', x: 0.4, y: 0.3, w: 0.2, h: 0.2 },
           transitionVideoUrl: '/demo/a-to-b.mp4',
+          returnVideoUrl: '/demo/b-to-a.mp4',
         },
       ],
     },
