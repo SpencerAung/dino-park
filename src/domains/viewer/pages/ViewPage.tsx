@@ -27,11 +27,14 @@ export async function ViewPage({
     .filter((x): x is Target => x !== null)
 
   const parentEdge = findParentEdge(scene, viewId)
-  const parentView = parentEdge ? scene.views[parentEdge.parentViewId] : null
-  const allTargets: Target[] =
-    parentView?.mediaType === 'image'
-      ? [...oneHopTargets, { imageUrl: parentView.imageUrl, videoUrl: parentEdge!.returnVideoUrl }]
-      : oneHopTargets
+  let parentTarget: Target | null = null
+  if (parentEdge) {
+    const parentView = scene.views[parentEdge.parentViewId]
+    if (parentView?.mediaType === 'image') {
+      parentTarget = { imageUrl: parentView.imageUrl, videoUrl: parentEdge.returnVideoUrl }
+    }
+  }
+  const allTargets: Target[] = parentTarget ? [...oneHopTargets, parentTarget] : oneHopTargets
 
   return (
     <ViewClient
