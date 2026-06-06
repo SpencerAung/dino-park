@@ -1,10 +1,10 @@
-'use client'
-import { useTransitionOverlay } from '../hooks/useTransitionOverlay'
+'use client';
+import { useTransitionOverlay } from '../hooks/useTransitionOverlay';
 
 export function TransitionOverlay() {
-  const { phase, videoUrl, onVideoEnded } = useTransitionOverlay()
+  const { phase, videoUrl, onVideoEnded } = useTransitionOverlay();
 
-  if (phase === 'idle') return null
+  if (phase === 'idle') return null;
 
   if (phase === 'playing' && videoUrl) {
     return (
@@ -18,9 +18,9 @@ export function TransitionOverlay() {
           onEnded={onVideoEnded}
         />
       </div>
-    )
+    );
   }
 
   // phase === 'fading'
-  return <div className="fixed inset-0 z-50 bg-black" />
+  return <div className="fixed inset-0 z-50 bg-black" />;
 }

@@ -1,22 +1,22 @@
-import { useEffect } from 'react'
+import { useEffect } from 'react';
 
-type Target = { imageUrl: string; videoUrl?: string }
+type Target = { imageUrl: string; videoUrl?: string };
 
 export function usePrefetchOnMount(targets: Target[]) {
   useEffect(() => {
-    const controller = new AbortController()
+    const controller = new AbortController();
     for (const t of targets) {
       fetch(t.imageUrl, {
         signal: controller.signal,
         priority: 'low' as RequestInit['priority'],
-      }).catch(() => {})
+      }).catch(() => {});
       if (t.videoUrl) {
         fetch(t.videoUrl, {
           signal: controller.signal,
           priority: 'low' as RequestInit['priority'],
-        }).catch(() => {})
+        }).catch(() => {});
       }
     }
-    return () => controller.abort()
-  }, [targets])
+    return () => controller.abort();
+  }, [targets]);
 }
