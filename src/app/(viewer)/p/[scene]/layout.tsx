@@ -1,1 +1,1 @@
-export { ViewerLayout as default } from '@/domains/viewer/pages/ViewerLayout'
+export { ViewerLayout as default } from '@/domains/viewer/pages/ViewerLayout';

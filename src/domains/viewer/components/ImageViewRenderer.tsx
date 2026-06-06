@@ -1,12 +1,12 @@
-import { Hotspot } from './Hotspot'
-import type { ImageView } from '@/entities/scenes/types'
+import { Hotspot } from './Hotspot';
+import type { ImageView } from '@/entities/scenes/types';
 
 export function ImageViewRenderer({
   view,
   sceneId,
 }: {
-  view: ImageView
-  sceneId: string
+  view: ImageView;
+  sceneId: string;
 }) {
   return (
     <div className="relative w-full h-screen bg-black">
@@ -22,5 +22,5 @@ export function ImageViewRenderer({
         ))}
       </div>
     </div>
-  )
+  );
 }

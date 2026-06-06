@@ -1,24 +1,29 @@
-import { useAtom } from 'jotai'
-import { useRouter } from 'next/navigation'
-import { useCallback, useEffect } from 'react'
-import { transitionAtom } from '../state/transitionAtom'
+import { useAtom } from 'jotai';
+import { useRouter } from 'next/navigation';
+import { useCallback, useEffect } from 'react';
+import { transitionAtom } from '../state/transitionAtom';
 
 export function useTransitionOverlay() {
-  const [t, setT] = useAtom(transitionAtom)
-  const router = useRouter()
+  const [transition, setTransition] = useAtom(transitionAtom);
+  const router = useRouter();
 
   const onVideoEnded = useCallback(() => {
-    if (t.phase !== 'playing') return
-    setT({ phase: 'fading', targetViewId: t.targetViewId, sceneId: t.sceneId })
-  }, [t, setT])
+    if (transition.phase !== 'playing') return;
+    setTransition({
+      phase: 'fading',
+      targetViewId: transition.targetViewId,
+      sceneId: transition.sceneId,
+    });
+  }, [transition, setTransition]);
 
   useEffect(() => {
-    if (t.phase === 'fading') router.push(`/p/${t.sceneId}/${t.targetViewId}`)
-  }, [t, router])
+    if (transition.phase === 'fading')
+      router.push(`/p/${transition.sceneId}/${transition.targetViewId}`);
+  }, [transition, router]);
 
   return {
-    phase: t.phase,
-    videoUrl: t.phase === 'playing' ? t.videoUrl : null,
+    phase: transition.phase,
+    videoUrl: transition.phase === 'playing' ? transition.videoUrl : null,
     onVideoEnded,
-  }
+  };
 }

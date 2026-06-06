@@ -1,15 +1,15 @@
-'use client'
-import { useBackNavClick } from '../hooks/useBackNavClick'
-import type { ParentEdge } from '@/entities/scenes/types'
+'use client';
+import { useBackNavClick } from '../hooks/useBackNavClick';
+import type { ParentEdge } from '@/entities/scenes/types';
 
 export function BackButton({
   parentEdge,
   sceneId,
 }: {
-  parentEdge: ParentEdge
-  sceneId: string
+  parentEdge: ParentEdge;
+  sceneId: string;
 }) {
-  const onClick = useBackNavClick(parentEdge, sceneId)
+  const onClick = useBackNavClick(parentEdge, sceneId);
   return (
     <button
       type="button"
@@ -20,11 +20,19 @@ export function BackButton({
                  transition hover:bg-black/60 focus:outline-none
                  focus-visible:ring-2 focus-visible:ring-white/80"
     >
-      <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none"
-           stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-           strokeLinejoin="round">
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M15 18l-6-6 6-6" />
       </svg>
     </button>
-  )
+  );
 }

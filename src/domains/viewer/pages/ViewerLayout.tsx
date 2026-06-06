@@ -1,7 +1,7 @@
-'use client'
-import { Provider as JotaiProvider } from 'jotai'
-import type { ReactNode } from 'react'
-import { TransitionOverlay } from '../components/TransitionOverlay'
+'use client';
+import { Provider as JotaiProvider } from 'jotai';
+import type { ReactNode } from 'react';
+import { TransitionOverlay } from '../components/TransitionOverlay';
 
 export function ViewerLayout({ children }: { children: ReactNode }) {
   return (
@@ -9,5 +9,5 @@ export function ViewerLayout({ children }: { children: ReactNode }) {
       {children}
       <TransitionOverlay />
     </JotaiProvider>
-  )
+  );
 }

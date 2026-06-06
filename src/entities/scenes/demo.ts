@@ -1,4 +1,4 @@
-import type { Scene } from './types'
+import type { Scene } from './types';
 
 export const demoScene: Scene = {
   id: 'demo',
@@ -25,4 +25,4 @@ export const demoScene: Scene = {
       hotspots: [],
     },
   },
-}
+};
